@@ -31,7 +31,7 @@ jobs:
     - name: debug
       run: |
         pwd
-        ls -al
+        find ./ -ls
     - name: Test with pytest
       run: |
         python -m pytest python/tests -v
