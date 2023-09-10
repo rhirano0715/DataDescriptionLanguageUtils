@@ -4,7 +4,7 @@ import pytest
 import pathlib
 import src.ddlu as ddlu
 
-TESTDATA_ROOT = pathlib.Path(__file__).parent.parent / "testdata"
+TESTDATA_ROOT = pathlib.Path(__file__).parent.parent.parent / "testdata"
 INPUT_DIR = TESTDATA_ROOT / "input"
 INPUT_JSON = INPUT_DIR / "test.json"
 INPUT_XML = INPUT_DIR / "test.xml"
