@@ -28,6 +28,10 @@ jobs:
         python -m pip install --upgrade pip
         pip install pytest xmltodict
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: debug
+      run: |
+        pwd
+        ls -al
     - name: Test with pytest
       run: |
         python -m pytest python/tests -v
