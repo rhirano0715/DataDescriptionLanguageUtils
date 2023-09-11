@@ -1,5 +1,10 @@
 name: Test PowerShell on Ubuntu
-on: push
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   pester-test:
@@ -11,4 +16,15 @@ jobs:
       - name: Test
         shell: pwsh
         run: |
-          Invoke-Pester powershell -Passthru
+          $PesterPreference.Run.Path = "./powershell"
+          $PesterPreference.CodeCoverage.Enabled = $true
+          $PesterPreference.CodeCoverage.Path = "./powershell/*.ps*1"
+          Invoke-Pester -Configuration $PesterPreference
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v2
+        with:
+          file: ./coverage.xml
+          flags: unittests
+          name: codecov-umbrella
+          yml: ./.codecov.yml  # Optional
+          fail_ci_if_error: true  # Optional
