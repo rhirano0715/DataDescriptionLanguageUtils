@@ -121,7 +121,18 @@ function WriteFile {
     if ($private:extension -eq ".xml") {
         $private:xml = New-Object System.Xml.XmlDocument
 
-        ConvertTo-Xml -InputObject $OutputData -XmlDocument $private:xml -ParentNode $private:xml
+        if ($OutputData -is [Array]) {
+            $private:parentNode = $private:xml.CreateElement("items")
+            $private:xml.AppendChild($private:parentNode)
+            $private:data = [ordered] @{"item" = $OutputData }
+            ConvertTo-Xml -InputObject $private:data -XmlDocument $private:xml -ParentNode $private:parentNode
+        }
+        else {
+            ConvertTo-Xml -InputObject $OutputData -XmlDocument $private:xml -ParentNode $private:xml
+        }
+    
+    
+    
 
         $xmlwriter = New-Object System.Xml.XmlTextWriter($OutputFilePath, $UTF8)
         $xmlwriter.Formatting = [System.Xml.Formatting]::Indented

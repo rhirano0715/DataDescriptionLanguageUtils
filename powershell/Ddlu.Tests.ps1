@@ -6,7 +6,7 @@ $TestdataRoot = Split-Path -Parent $HERE | Join-Path -ChildPath "testdata"
 $InputRoot = Join-Path $TestdataRoot "input"
 $InputJson = Join-Path $InputRoot "test.json"
 $InputXml = Join-Path $InputRoot "test.xml"
-$OutputRoot = Join-Path $TestdataRoot "output"
+$OutputRoot = Join-Path $TestdataRoot "output" | Join-Path -ChildPath "powershell"
 $OutputFromJsonJson = Join-Path $OutputRoot "fromjson.json"
 $OutputFromJsonXml = Join-Path $OutputRoot "fromjson.xml"
 $OutputFromXmlJson = Join-Path $OutputRoot "fromxml.json"
@@ -37,20 +37,21 @@ Describe "DdluMain test" {
     }
     It "Json2Xml not surported" {
         $expected = @(
-            '[',
-            '    {',
-            '        "Key1":  "Value1",',
-            '        "Key2":  "Value2",',
-            '        "Key3":  "Value3",',
-            '        "Key4":  "Value4"',
-            '    },',
-            '    {',
-            '        "Key1":  "Value1",',
-            '        "Key2":  "Value2",',
-            '        "Key3":  "Value3",',
-            '        "Key4":  "Value4"',
-            '    }',
-            ']'
+            '<?xml version="1.0" encoding="utf-8"?>',
+            '<items>',
+            '    <item>',
+            '        <Key1>Value1</Key1>',
+            '        <Key2>Value2</Key2>',
+            '        <Key3>Value3</Key3>',
+            '        <Key4>Value4</Key4>',
+            '    </item>',
+            '    <item>',
+            '        <Key1>Value1</Key1>',
+            '        <Key2>Value2</Key2>',
+            '        <Key3>Value3</Key3>',
+            '        <Key4>Value4</Key4>',
+            '    </item>',
+            '</items>'
         )
 
         DdluMain $InputJson $OutputFromJsonXml

@@ -8,7 +8,7 @@ TESTDATA_ROOT = pathlib.Path(__file__).parent.parent.parent / "testdata"
 INPUT_DIR = TESTDATA_ROOT / "input"
 INPUT_JSON = INPUT_DIR / "test.json"
 INPUT_XML = INPUT_DIR / "test.xml"
-OUTPUT_DIR = TESTDATA_ROOT / "output"
+OUTPUT_DIR = TESTDATA_ROOT / "output" / "python"
 
 def test_json_to_json():
     excepted = """[
