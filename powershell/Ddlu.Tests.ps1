@@ -1,6 +1,6 @@
 $HERE = Split-Path -Parent $MyInvocation.MyCommand.Path
 $SUT = (Split-Path -Leaf $MyInvocation.MyCommand.Path) -replace '\.Tests\.', '.'
-. "$HERE\$SUT" "dummy InputFilePath" "dummy OutputFilePath"
+. (Join-Path $HERE $SUT) "dummy InputFilePath" "dummy OutputFilePath"
 
 $TestdataRoot = Split-Path -Parent $HERE | Join-Path -ChildPath "testdata"
 $InputRoot = Join-Path $TestdataRoot "input"
