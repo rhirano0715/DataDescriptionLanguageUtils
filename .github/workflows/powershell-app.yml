@@ -16,6 +16,7 @@ jobs:
       - name: Test
         shell: pwsh
         run: |
+          $PesterPreference = New-PesterConfiguration
           $PesterPreference.Run.Path = "./powershell"
           $PesterPreference.CodeCoverage.Enabled = $true
           $PesterPreference.CodeCoverage.Path = "./powershell/*.ps*1"
