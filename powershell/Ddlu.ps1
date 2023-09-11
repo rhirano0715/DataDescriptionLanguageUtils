@@ -10,7 +10,7 @@ $ErrorActionPreference = "Stop"
 
 $UTF8 = [System.Text.Encoding]::GetEncoding("utf-8")
 
-function DdluMain {
+function script:DdluMain {
     param (
         [Parameter(Mandatory = $true, HelpMessage = "Input file path")]
         [string]$InputFilePath,
@@ -28,7 +28,7 @@ function DdluMain {
     }
 }
 
-function Validate {
+function script:Validate {
     param (
         [Parameter(Mandatory = $true, HelpMessage = "Input file path")]
         [string]$InputFilePath,
@@ -46,7 +46,7 @@ function Validate {
     }
 }
 
-function ReadFile {
+function script:ReadFile {
     param (
         [Parameter(Mandatory = $true, HelpMessage = "Input file path")]
         [string]$InputFilePath
@@ -66,7 +66,7 @@ function ReadFile {
     Write-Error "Reading $private:extension is not supported."
 }
 
-function Convert-XmlToHashTable {
+function script:Convert-XmlToHashTable {
     param (
         [Parameter(Mandatory = $true)]
         [System.Xml.XmlNode] $XmlNode
@@ -104,7 +104,7 @@ function Convert-XmlToHashTable {
     return $hashTable
 }
 
-function WriteFile {
+function script:WriteFile {
     param (
         [Parameter(Mandatory = $true, HelpMessage = "Output file path")]
         [string]$OutputFilePath,
@@ -131,9 +131,6 @@ function WriteFile {
             ConvertTo-Xml -InputObject $OutputData -XmlDocument $private:xml -ParentNode $private:xml
         }
     
-    
-    
-
         $xmlwriter = New-Object System.Xml.XmlTextWriter($OutputFilePath, $UTF8)
         $xmlwriter.Formatting = [System.Xml.Formatting]::Indented
         $xmlwriter.IndentChar = " "
@@ -146,7 +143,7 @@ function WriteFile {
     Write-Error "Writing $private:extension is not supported."
 }
 
-function ConvertTo-Xml {
+function script:ConvertTo-Xml {
     param (
         [Parameter(Mandatory = $true)]
         $InputObject,
@@ -168,7 +165,7 @@ function ConvertTo-Xml {
     }
 }
 
-function ProcessEntry {
+function script:ProcessEntry {
     param (
         [Parameter(Mandatory = $true)]
         $Entry,
