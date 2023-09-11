@@ -55,11 +55,21 @@ def test_json_to_xml():
 
 def test_xml_to_json():
     excepted = """{
-    "note": {
-        "to": "Tove",
-        "from": "Jani",
-        "heading": "Reminder",
-        "body": "Don't forget me this weekend!"
+    "notes": {
+        "note": [
+            {
+                "to": "Tove",
+                "from": "Jani",
+                "heading": "Reminder",
+                "body": "Don't forget me this weekend!"
+            },
+            {
+                "to": "to",
+                "from": "from",
+                "heading": "head",
+                "body": "body"
+            }
+        ]
     }
 }"""
 
@@ -70,12 +80,20 @@ def test_xml_to_json():
 
 def test_xml_to_xml():
     excepted = """<?xml version="1.0" encoding="utf-8"?>
-<note>
-	<to>Tove</to>
-	<from>Jani</from>
-	<heading>Reminder</heading>
-	<body>Don't forget me this weekend!</body>
-</note>"""
+<notes>
+	<note>
+		<to>Tove</to>
+		<from>Jani</from>
+		<heading>Reminder</heading>
+		<body>Don't forget me this weekend!</body>
+	</note>
+	<note>
+		<to>to</to>
+		<from>from</from>
+		<heading>head</heading>
+		<body>body</body>
+	</note>
+</notes>"""
 
     actual = OUTPUT_DIR / "fromxml.xml"
     ddlu.run(INPUT_XML, actual)

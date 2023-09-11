@@ -1,1 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?><note><to>Tove</to><from>Jani</from><heading>Reminder</heading><body>Don't forget me this weekend!</body></note>
+<?xml version="1.0" encoding="utf-8"?><notes><note><to>Tove</to><from>Jani</from><heading>Reminder</heading><body>Don't forget me this weekend!</body></note><note><to>to</to><from>from</from><heading>head</heading><body>body</body></note></notes>
